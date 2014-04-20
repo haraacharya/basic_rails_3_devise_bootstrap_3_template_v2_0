@@ -1,0 +1,31 @@
+<nav class="navbar navbar-inverse" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#template-navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#"><%= Buzurg::Application::APPLICATION_TITLE %></a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="template-navbar-collapse">
+    <ul class="nav navbar-nav">
+      <li <%= active(root_path) %> ><%= link_to "Home", root_path %></li>
+      <li <%= active(howitworks_path) %> ><%= link_to "How It Works", howitworks_path %></li>
+      
+    </ul>
+    
+    <ul class="nav navbar-nav navbar-right">
+      <% if current_user %>
+            <li class="navbar-text">coins <span class="badge">0</span></li>
+            <li><%= link_to "Not you? Sign out", destroy_user_session_path, :method => :delete, id: "sign_out" %></li>
+        <% else %>
+            <li <%= active(new_user_session_path) %> ><%= link_to "Sign In", new_user_session_path %></li>
+            <li <%= active(new_user_registration_path) %> ><%= link_to "Sign Up", new_user_registration_path, id: "sign_up" %></li>
+        <% end %>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
